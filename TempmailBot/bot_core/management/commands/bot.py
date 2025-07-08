@@ -61,11 +61,11 @@ class Command(BaseCommand):
     async def msg(message: Message):
         builder = InlineKeyboardBuilder()
         builder.add(InlineKeyboardButton(
-            text="Get Email",
+            text="📥 Get Email",
             callback_data="new_email"
         ))
         builder.add(InlineKeyboardButton(
-            text="My Email",
+            text="📮 My Email",
             callback_data="list_emails"
         ))
         builder.add(InlineKeyboardButton(
@@ -80,14 +80,17 @@ class Command(BaseCommand):
         await callback.answer("Generating...")
         await asyncio.sleep(3)
         new_email=await sync_to_async(create_new_email)(chat_id=callback.from_user.id)
-        await callback.message.answer(f"<b>New Address:</b> <code>{new_email}</code>", parse_mode='HTML')
+        await callback.message.answer(f"<b>New Address:\n</b> <code>{new_email}</code>\n\nDestroy this address by Clicking again the <b>Get Email</b> Button", parse_mode='HTML')
 
     @dp.callback_query(F.data == "list_emails")
     async def button2_handler(callback: CallbackQuery):
-        await callback.answer("Processsing..!")
+        await callback.answer("Querying the DB...")
         await asyncio.sleep(3)
         mail = await sync_to_async(retrieve_dem_mails)(chat_id=callback.from_user.id)
-        await callback.message.answer(f"<b>Email Address:</b> <code>{mail}</code>", parse_mode='HTML')
+        if not mail == None:
+            await callback.message.answer(f"<b>Email Address:\n</b> <code>{mail}</code>\n\nThis Email address can last longer untill you Generate a new one.", parse_mode='HTML')
+        else:
+            await callback.message.answer(f"Looks like you have no address yet. Click the <b>Get Email</b> button to create one.", parse_mode='HTML')
 
     @dp.callback_query(F.data == "guide")
     async def userGuide(callback: CallbackQuery):
