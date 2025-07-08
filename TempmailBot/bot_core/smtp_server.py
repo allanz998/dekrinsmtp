@@ -30,6 +30,55 @@ class EmailHandler:
             print(f"Error processing email: {e}")
             return '500 Could not process message'
 
+
+
+async def run_smtp_server():
+    handler = EmailHandler()
+    controller = Controller(handler, hostname='127.0.0.1', port=2525)
+    controller.start()
+    print("SMTP server running on port 2525")
+    try:
+        while True:
+            await asyncio.sleep(3600)
+    except KeyboardInterrupt:
+        controller.stop()
+
+
+
+
+import asyncio
+from aiosmtpd.controller import Controller
+from email.parser import BytesParser
+import json
+import aio_pika
+from datetime import datetime
+
+RABBITMQ_URL = "amqp://localhost"
+EMAIL_QUEUE = "email_messages"
+
+class EmailHandler:
+    async def handle_DATA(self, server, session, envelope):
+        try:
+            print(f"Incoming mail from {session.peer}")  # Log connection
+            to_address = envelope.rcpt_tos[0]
+            from_address = envelope.mail_from
+            msg = BytesParser().parsebytes(envelope.content)
+            
+            email_data = {
+                "toAddress": to_address,
+                "from": from_address,
+                "subject": msg["subject"] or "(no subject)",
+                "body": msg.get_payload() or "(no body)",
+                "timestamp": datetime.now().isoformat(),
+                "client_ip": session.peer[0]  # Track sender IP
+            }
+            
+            await self.send_to_rabbitmq(email_data)
+            return '250 Message accepted for delivery'
+        except Exception as e:
+            print(f"Error processing email: {e}")
+            return '451 Temporary local problem'
+ 
     async def send_to_rabbitmq(self, email_data):
         connection = await aio_pika.connect(RABBITMQ_URL)
         channel = await connection.channel()
@@ -47,11 +96,19 @@ class EmailHandler:
 
 async def run_smtp_server():
     handler = EmailHandler()
-    controller = Controller(handler, hostname='127.0.0.1', port=2525)
+    controller = Controller(
+        handler,
+        hostname='0.0.0.0',  # Listen externally
+        port=25,             # Standard SMTP port
+        ident="MySMTP 1.0"    # Server banner
+    )
     controller.start()
-    print("SMTP server running on port 2525")
+    print(f"SMTP server running on port {controller.port}")
     try:
         while True:
-            await asyncio.sleep(3600)
+            await asyncio.sleep(1)
     except KeyboardInterrupt:
         controller.stop()
+
+if __name__ == "__main__":
+    asyncio.run(run_smtp_server())
