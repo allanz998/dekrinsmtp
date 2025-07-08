@@ -15,7 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-BOT="8184915475:AAG3KFXdnTK7q9TL2AXZwDM90YyPSf5MpsM"
+BOT="7855271368:AAEO79uEg9ZntQciy_lF1AacH8VAqj_nPbg"
 BASE_DOMAIN='penguinteams.dpdns.org'
 DEVELOPER='@teslasshx'
 APP_NAME='MailCloak'
