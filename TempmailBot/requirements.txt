@@ -1,0 +1,5 @@
+aiogram 
+aio-pika
+aiosmtpd 
+dkimpy tenacity
+django
