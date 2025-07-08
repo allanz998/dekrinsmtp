@@ -1,5 +1,6 @@
 aiogram 
 aio-pika
 aiosmtpd 
-dkimpy tenacity
+dkimpy 
+tenacity
 django
