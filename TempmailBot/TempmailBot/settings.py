@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 BOT="7855271368:AAEO79uEg9ZntQciy_lF1AacH8VAqj_nPbg"
 BASE_DOMAIN='penguinteams.dpdns.org'
-DEVELOPER='@teslasshx'
+DEVELOPER='@blackdesk_code'
 APP_NAME='MailCloak'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
