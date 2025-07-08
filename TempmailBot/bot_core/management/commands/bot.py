@@ -87,9 +87,9 @@ class Command(BaseCommand):
         await callback.answer("Querying the DB...")
         await asyncio.sleep(3)
         mail = await sync_to_async(retrieve_dem_mails)(chat_id=callback.from_user.id)
-        if not mail == None:
+        if not ( mail == None and "example.com" in mail) :
             await callback.message.answer(f"<b>Email Address:\n</b> <code>{mail}</code>\n\nThis Email address can last longer untill you Generate a new one.", parse_mode='HTML')
-        elif "example.com" in mail or mail == None:
+        else:
             await callback.message.answer(f"Looks like you have no address yet. \nClick the <b>Get Email</b> button to create one.", parse_mode='HTML')
 
     @dp.callback_query(F.data == "guide")
