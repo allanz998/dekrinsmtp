@@ -16,9 +16,9 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 BOT="8184915475:AAG3KFXdnTK7q9TL2AXZwDM90YyPSf5MpsM"
-BASE_DOMAIN='example.com'
+BASE_DOMAIN='penguinteams.dpdns.org'
 DEVELOPER='@teslasshx'
-APP_NAME='QMailer'
+APP_NAME='MailCloak'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
