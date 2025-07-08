@@ -15,6 +15,7 @@ sudo chmod 600 /etc/dkim/private.key
 
 #create working dir
 rm -rf /opt/smtp-server
+
 mkdir -p /opt/smtp-server
 cd /opt/smtp-server
 git clone "https://github.com/allanz998/dekrinsmtp.git"
@@ -66,7 +67,7 @@ systemctl daemon-reload
 systemctl enable bot
 systemctl start bot
 echo "Bot Dispatch: $(systemctl is-active bot)"
-systemctl restart bot
+
 
 #SMTP Service
 
@@ -92,4 +93,3 @@ systemctl daemon-reload
 systemctl enable smtp-server
 systemctl start smtp-server
 echo "SMTP SERVER: $(systemctl is-active smtp-server)"
-systemctl restart smtp-server
