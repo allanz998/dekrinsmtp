@@ -41,4 +41,52 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-nohup python3 manage.py bot & nohup python3 manage.py smtp
+#nohup python3 manage.py bot & nohup python3 manage.py smtp
+
+#Bot Service
+cat << EOF > /etc/systemd/system/bot.service
+    [Unit]
+    Description=Temporary Mail system by Olwa Inventions
+    After=network.target
+
+    [Service]
+    User=root
+    Type=simple
+    ExecStart=/opt/smtp-server/TempmailBot/venv/bin/python3 /opt/smtp-server/TempmailBot/manage.py bot 
+    WorkingDirectory=/opt/smtp-server/TempmailBot
+    Restart=always
+
+    [Install]
+    WantedBy=multi-user.target
+EOF
+
+chmod 640 /etc/systemd/system/bot.service
+systemctl daemon-reload
+systemctl enable bot
+systemctl start bot
+echo "Bot Dispatch: $(systemctl is-active bot)"
+
+#SMTP Service
+
+
+cat << EOF > /etc/systemd/system/smtp-server.service
+    [Unit]
+    Description=SMTP Server logic by Olwa Inventions
+    After=network.target
+
+    [Service]
+    User=root
+    Type=simple
+    ExecStart=/opt/smtp-server/TempmailBot/venv/bin/python3 /opt/smtp-server/TempmailBot/manage.py smtp
+    WorkingDirectory=/opt/smtp-server/TempmailBot
+    Restart=always
+
+    [Install]
+    WantedBy=multi-user.target
+EOF
+
+chmod 640 /etc/systemd/system/smtp-server.service
+systemctl daemon-reload
+systemctl enable smtp-server
+systemctl start smtp-server
+echo "SMTP SERVER: $(systemctl is-active smtp-server)"
