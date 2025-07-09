@@ -21,7 +21,7 @@ if TEST:
     BOT="7486127009:AAGhNwwxMGV7ks68Tv67lEJR6-tQ2B6g_Ok"
 else:
     BOT="7855271368:AAEO79uEg9ZntQciy_lF1AacH8VAqj_nPbg"
-BASE_DOMAIN='penguinteams.dpdns.org'
+BASE_DOMAIN='coley.dpdns.org'
 DEVELOPER='@blackdesk_code'
 APP_NAME='MailCloak'
 # Quick-start development settings - unsuitable for production
