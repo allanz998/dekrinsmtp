@@ -5,5 +5,4 @@ dkimpy
 tenacity
 django
 dj-database-url
-psycopg2-binary
-psycopg2
+psycopg2-binary 

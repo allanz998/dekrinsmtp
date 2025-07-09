@@ -7,7 +7,10 @@ import random
 
 def retrieve_dem_mails(chat_id):
     contacts = TelegramContact.objects.filter(chat_id=chat_id).first()
-    return contacts.email_addr
+    if not contacts == None:
+        return contacts.email_addr
+    return None
+
 
 
 def is_exists(prefx):
@@ -28,7 +31,7 @@ def create_new_email(chat_id, prefx=None):
     else:
         new_contact=TelegramContact(
             chat_id=chat_id,
-            email_addr= new_email
+            email_addr= new_email, 
         )
         new_contact.save()
 
