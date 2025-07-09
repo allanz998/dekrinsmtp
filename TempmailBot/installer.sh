@@ -7,6 +7,7 @@ sudo apt install python3-venv
 sudo apt install rabbitmq-server
 
 
+
 #generate the private and pub keys 
 sudo mkdir -p /etc/dkim
 sudo openssl genrsa -out /etc/dkim/private.key 2048
@@ -14,7 +15,11 @@ sudo openssl rsa -in /etc/dkim/private.key -pubout -out /etc/dkim/public.key
 sudo chmod 600 /etc/dkim/private.key
 
 #create working dir
-rm -rf /opt/smtp-server
+sudo rm -rf /opt/smtp-server
+sudo rm -rf /etc/systemd/system/bot.service
+sudo rm -rf /etc/systemd/system/smtp-server.service
+sudo systemctl disable bot
+sudo systemctl disable smtp-server
 
 mkdir -p /opt/smtp-server
 cd /opt/smtp-server
@@ -62,10 +67,10 @@ cat << EOF > /etc/systemd/system/bot.service
     WantedBy=multi-user.target
 EOF
 
-chmod 640 /etc/systemd/system/bot.service
-systemctl daemon-reload
-systemctl enable bot
-systemctl start bot
+sudo chmod 640 /etc/systemd/system/bot.service
+sudo systemctl daemon-reload
+sudo systemctl enable bot
+sudo systemctl start bot
 echo "Bot Dispatch: $(systemctl is-active bot)"
 
 
@@ -88,8 +93,8 @@ cat << EOF > /etc/systemd/system/smtp-server.service
     WantedBy=multi-user.target
 EOF
 
-chmod 640 /etc/systemd/system/smtp-server.service
-systemctl daemon-reload
-systemctl enable smtp-server
-systemctl start smtp-server
+sudo chmod 640 /etc/systemd/system/smtp-server.service
+sudo systemctl daemon-reload
+sudo systemctl enable smtp-server
+sudo systemctl start smtp-server
 echo "SMTP SERVER: $(systemctl is-active smtp-server)"
