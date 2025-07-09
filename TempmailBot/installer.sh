@@ -41,7 +41,7 @@ sudo ufw allow 587/tcp  # Submission (i will use this to send out emails when im
 #now the rest is about launching the stuff
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+pip install -r ./requirements.txt
 
 #nohup python3 manage.py bot & nohup python3 manage.py smtp
 
