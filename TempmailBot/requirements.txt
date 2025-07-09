@@ -4,3 +4,5 @@ aiosmtpd
 dkimpy 
 tenacity
 django
+dj-database-url
+psycopg2-binary

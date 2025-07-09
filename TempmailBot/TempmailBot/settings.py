@@ -9,13 +9,15 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-BOT="7855271368:AAEO79uEg9ZntQciy_lF1AacH8VAqj_nPbg"
+#postgresql://postgres:@g3dCAT%nQ;>7>6@db.jngaznznbpsezsjblttv.supabase.co:5432/postgres
+
+BOT="7486127009:AAGhNwwxMGV7ks68Tv67lEJR6-tQ2B6g_Ok"
 BASE_DOMAIN='penguinteams.dpdns.org'
 DEVELOPER='@blackdesk_code'
 APP_NAME='MailCloak'
@@ -76,11 +78,9 @@ WSGI_APPLICATION = 'TempmailBot.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default='postgresql://postgres.jngaznznbpsezsjblttv:@g3dCAT%nQ;>7>6@aws-0-us-east-2.pooler.supabase.com:5432/postgres')
 }
 
 
