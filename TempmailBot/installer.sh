@@ -98,3 +98,5 @@ sudo systemctl daemon-reload
 sudo systemctl enable smtp-server
 sudo systemctl start smtp-server
 echo "SMTP SERVER: $(systemctl is-active smtp-server)"
+
+reboot
