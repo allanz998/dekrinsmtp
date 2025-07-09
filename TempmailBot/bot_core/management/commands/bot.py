@@ -96,7 +96,7 @@ class Command(BaseCommand):
         if exists:
             await message.reply(f"<b>An email with this Nickname already exists!\n\nLets Try it once more. Send Nickname: </b>")
         else:
-            new_email=await sync_to_async(create_new_email)(chat_id=message.from_user.id, prefx=prefx)
+            new_email=await sync_to_async(create_new_email)(chat_id=message.from_user.id, prefx=prefx.lower())
             await message.answer(f"<b>New Address:\n</b> <code>{new_email}</code>\n\nDestroy this address by Clicking again the <b>Get Email</b> Button", parse_mode='HTML')
             await state.clear()
 
