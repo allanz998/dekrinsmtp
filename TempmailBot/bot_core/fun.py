@@ -10,6 +10,12 @@ def retrieve_dem_mails(chat_id):
     return contacts.email_addr
 
 
+def is_exists(prefx):
+    contacts = TelegramContact.objects.filter(email_addr__istartswith=f"{prefx}@") 
+    if not contacts.exists():
+        return False
+    else: 
+        return True
 
 
 def create_new_email(chat_id, prefx=None):
