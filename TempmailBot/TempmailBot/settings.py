@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'TempmailBot.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgresql://neondb_owner:npg_z9PYWjktl4mC@ep-round-dust-a2eds1a4-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require', 
+    'default': dj_database_url.config(default='postgresql://postgres:oDBvKzXpVUJOoJZmCqrrZHYmgsIZWYrD@gondola.proxy.rlwy.net:18493/railway', 
                                      conn_max_age=300,
                                       conn_health_checks=True
                                      ) 
