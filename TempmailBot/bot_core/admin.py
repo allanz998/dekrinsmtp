@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import TelegramContact
+from unfold.admin import ModelAdmin
 
 @admin.register(TelegramContact)
-class TelegramContactAdmin(admin.ModelAdmin):
-    list_display=('username', 'chat_id')
+class TelegramContactAdmin(ModelAdmin):
+    list_display=('chat_id',) 

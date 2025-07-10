@@ -16,7 +16,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 #postgresql://postgres:@g3dCAT%nQ;>7>6@db.jngaznznbpsezsjblttv.supabase.co:5432/postgres
-TEST=False
+TEST=True
 if TEST:
     BOT="7486127009:AAGhNwwxMGV7ks68Tv67lEJR6-tQ2B6g_Ok"
 else:
@@ -40,6 +40,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'bot_core',
+    "unfold",
+    "unfold.contrib.import_export",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -127,8 +129,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATIC_ROOT = BASE_DIR / 'static'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+UNFOLD = {
+    "SITE_TITLE": "MailCloak Panel",
+    "SITE_HEADER": "MailCloak Dashboard",
+    "SITE_SUBHEADER": "Crafted by PenguinDev"
+    
+    }
+ 
