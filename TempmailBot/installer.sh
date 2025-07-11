@@ -39,6 +39,9 @@ echo "Copy this and add use as the PUBLIC_KEY_CONTENT. Dont include the headers 
 echo "======================================----=="
 cat /etc/dkim/public.key
 echo ""
+
+read -rsp $'Press Enter to continue...\n'
+
 sudo ufw allow 25/tcp   # SMTP
 sudo ufw allow 587/tcp  # Submission (i will use this to send out emails when implemented)
 
