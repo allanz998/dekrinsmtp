@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'import_export'
+
 ]
 
 MIDDLEWARE = [
@@ -85,13 +87,14 @@ WSGI_APPLICATION = 'TempmailBot.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgresql://postgres:oDBvKzXpVUJOoJZmCqrrZHYmgsIZWYrD@gondola.proxy.rlwy.net:18493/railway', 
+    'default': dj_database_url.config(default='postgresql://postgres:LWGjKkNyuqbTOUXjvmxYNioDdBfHJvFF@hopper.proxy.rlwy.net:51077/railway', 
                                      conn_max_age=300,
                                       conn_health_checks=True
                                      ) 
     
     
 }
+
 
 
 # Password validation

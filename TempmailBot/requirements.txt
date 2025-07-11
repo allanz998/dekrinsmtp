@@ -6,4 +6,5 @@ tenacity
 django
 dj-database-url
 psycopg2-binary 
-django-unfold
+django-unfold 
+django-import-export
