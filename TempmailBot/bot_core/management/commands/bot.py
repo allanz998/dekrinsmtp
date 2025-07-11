@@ -91,6 +91,14 @@ class Command(BaseCommand):
     @dp.message(Form.name_prefx)
     async def user_prefix(message: Message, state: FSMContext):
         prefx=message.text.strip()
+        reserved = ['admin', 'support', 'info', 'email', 'agent']
+        if len(prefx.split()) > 1:
+            await message.reply('This is not allowed. Send me one single name')
+            return
+        
+        if prefx in reserved:
+            await message.reply('Username is not available to you. Try a different one')
+            return
         #check related mail in db
         exists = await sync_to_async(is_exists)(prefx) 
         if exists:
@@ -103,9 +111,7 @@ class Command(BaseCommand):
 
 
     @dp.callback_query(F.data == "list_emails")
-    async def button2_handler(callback: CallbackQuery):
-        await callback.answer("Querying the DB...")
-        await asyncio.sleep(3)
+    async def button2_handler(callback: CallbackQuery): 
         mail = await sync_to_async(retrieve_dem_mails)(chat_id=callback.from_user.id)
         if not mail==None and not mail.endswith('example.com'):
             await callback.message.answer(f"<b>Email Address:\n</b> <code>{mail}</code>\n\nThis Email address can last longer untill you Generate a new one.", parse_mode='HTML')
