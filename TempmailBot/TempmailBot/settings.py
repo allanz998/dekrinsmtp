@@ -16,7 +16,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 #postgresql://postgres:@g3dCAT%nQ;>7>6@db.jngaznznbpsezsjblttv.supabase.co:5432/postgres
-TEST=True
+TEST=False
 if TEST:
     BOT="7486127009:AAGhNwwxMGV7ks68Tv67lEJR6-tQ2B6g_Ok"
 else:
