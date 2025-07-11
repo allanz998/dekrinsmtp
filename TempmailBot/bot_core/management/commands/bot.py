@@ -99,6 +99,10 @@ class Command(BaseCommand):
         if prefx in reserved:
             await message.reply('Username is not available to you. Try a different one')
             return
+        
+        if prefx.startswith('@'):
+            await message.reply('It should not start with <code>@</code> symbol')
+            return
         #check related mail in db
         exists = await sync_to_async(is_exists)(prefx) 
         if exists:
