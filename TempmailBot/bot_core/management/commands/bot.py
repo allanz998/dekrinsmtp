@@ -101,7 +101,7 @@ class Command(BaseCommand):
             return
         
         if '@' in prefx:
-            await message.answer('Error!\n\nYou cant include <code>@</code> symbol in your nickname.') 
+            await message.answer("Error!\n\nYou can't include <code>@</code> symbol in your nickname.") 
             return
         
         if prefx.startswith('@'):
