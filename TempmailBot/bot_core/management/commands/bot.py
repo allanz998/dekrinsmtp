@@ -40,6 +40,9 @@ class Command(BaseCommand):
         self.bot = Bot(token=self.TELEGRAM_BOT_TOKEN)
         
     async def on_email_message(self, message: IncomingMessage):
+        """
+        On recieving an email from the external world.
+        """
         async with message.process():
             try:
                 email = json.loads(message.body.decode())
